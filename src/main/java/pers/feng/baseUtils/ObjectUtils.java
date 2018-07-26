@@ -16,8 +16,8 @@ public class ObjectUtils {
 	private ObjectUtils(){}
 	
 	/**
-	 * ¶ÔÏóĞòÁĞ»¯
-	 * @param object ÊµÏÖÁËSerializable½Ó¿ÚµÄ¶ÔÏó
+	 * å¯¹è±¡åºåˆ—åŒ–
+	 * @param object å®ç°äº†Serializableæ¥å£çš„å¯¹è±¡
 	 * @return
 	 */
 	public static byte[] serialize(Object object) {
@@ -30,14 +30,14 @@ public class ObjectUtils {
 			byte[] bytes = baos.toByteArray();
 			return bytes;
 		} catch (Exception e) {
-			logger.error("ĞòÁĞ»¯Ê§°Ü", e);
+			logger.error("åºåˆ—åŒ–å¤±è´¥", e);
 		}
 		return null;
 		 
 	}
 	
 	/**
-	 * ¶ÔÏó·´ĞòÁĞ»¯
+	 * å¯¹è±¡ååºåˆ—åŒ–
 	 * @param bytes
 	 * @param clazz
 	 * @return
@@ -51,13 +51,13 @@ public class ObjectUtils {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return (T) ois.readObject();
 		} catch (Exception e) {
-			logger.error("·´ĞòÁĞ»¯Ê§°Ü", e);
+			logger.error("ååºåˆ—åŒ–å¤±è´¥", e);
 		}
 		return null;
 	}
 	
 	/**
-	 * ¶ÔÏó·´ĞòÁĞ»¯
+	 * å¯¹è±¡ååºåˆ—åŒ–
 	 * @param bytes
 	 * @param clazz
 	 * @return
@@ -70,7 +70,7 @@ public class ObjectUtils {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return ois.readObject();
 		} catch (Exception e) {
-			logger.error("·´ĞòÁĞ»¯Ê§°Ü", e);
+			logger.error("ååºåˆ—åŒ–å¤±è´¥", e);
 		}
 		return null;
 	}

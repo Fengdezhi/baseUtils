@@ -2,7 +2,6 @@ package pers.feng.baseUtils.json;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -11,15 +10,15 @@ import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 
-//Gson£¨ÏîÄ¿µØÖ·£ºhttps://github.com/google/gson£©¡£GsonÊÇÄ¿Ç°¹¦ÄÜ×îÈ«µÄJson½âÎöÉñÆ÷£¬Gsonµ±³õÊÇÎªÒòÓ¦Google¹«Ë¾ÄÚ²¿ĞèÇó¶øÓÉGoogle×ÔĞĞÑĞ·¢¶øÀ´£¬µ«×Ô´ÓÔÚ2008ÄêÎåÔÂ¹«¿ª·¢²¼µÚÒ»°æºóÒÑ±»Ğí¶à¹«Ë¾»òÓÃ»§Ó¦ÓÃ¡£GsonµÄÓ¦ÓÃÖ÷ÒªÎªtoJsonÓëfromJsonÁ½¸ö×ª»»º¯Êı£¬ÎŞÒÀÀµ£¬²»ĞèÒªÀıÍâ¶îÍâµÄjar£¬ÄÜ¹»Ö±½ÓÅÜÔÚJDKÉÏ¡£¶øÔÚÊ¹ÓÃÕâÖÖ¶ÔÏó×ª»»Ö®Ç°ĞèÏÈ´´½¨ºÃ¶ÔÏóµÄÀàĞÍÒÔ¼°Æä³ÉÔ±²ÅÄÜ³É¹¦µÄ½«JSON×Ö·û´®³É¹¦×ª»»³ÉÏà¶ÔÓ¦µÄ¶ÔÏó¡£ÀàÀïÃæÖ»ÒªÓĞgetºÍset·½·¨£¬GsonÍêÈ«¿ÉÒÔ½«¸´ÔÓÀàĞÍµÄjsonµ½bean»òbeanµ½jsonµÄ×ª»»£¬ÊÇJSON½âÎöµÄÉñÆ÷¡£
-//FastJson£¨ÏîÄ¿µØÖ·£ºhttps://github.com/alibaba/fastjson£©¡£FastjsonÊÇÒ»¸öJavaÓïÑÔ±àĞ´µÄ¸ßĞÔÄÜµÄJSON´¦ÀíÆ÷,ÓÉ°¢Àï°Í°Í¹«Ë¾¿ª·¢¡£ÎŞÒÀÀµ£¬²»ĞèÒªÀıÍâ¶îÍâµÄjar£¬ÄÜ¹»Ö±½ÓÅÜÔÚJDKÉÏ¡£FastJsonÔÚ¸´ÔÓÀàĞÍµÄBean×ª»»JsonÉÏ»á³öÏÖÒ»Ğ©ÎÊÌâ£¬¿ÉÄÜ»á³öÏÖÒıÓÃµÄÀàĞÍ£¬µ¼ÖÂJson×ª»»³ö´í£¬ĞèÒªÖÆ¶¨ÒıÓÃ¡£FastJson²ÉÓÃ¶À´´µÄËã·¨£¬½«parseµÄËÙ¶ÈÌáÉıµ½¼«ÖÂ£¬³¬¹ıËùÓĞjson¿â¡£
-//Jackson£¨ÏîÄ¿µØÖ·£ºhttps://github.com/FasterXML/jackson£©¡£Ïà±Èjson-lib¿ò¼Ü£¬JacksonËùÒÀÀµµÄjar°ü½ÏÉÙ£¬¼òµ¥Ò×ÓÃ²¢ÇÒĞÔÄÜÒ²ÒªÏà¶Ô¸ßĞ©¡£¶øÇÒJacksonÉçÇøÏà¶Ô±È½Ï»îÔ¾£¬¸üĞÂËÙ¶ÈÒ²±È½Ï¿ì¡£Jackson¶ÔÓÚ¸´ÔÓÀàĞÍµÄjson×ª»»bean»á³öÏÖÎÊÌâ£¬Ò»Ğ©¼¯ºÏMap£¬ListµÄ×ª»»³öÏÖÎÊÌâ¡£Jackson¶ÔÓÚ¸´ÔÓÀàĞÍµÄbean×ª»»Json£¬×ª»»µÄjson¸ñÊ½²»ÊÇ±ê×¼µÄJson¸ñÊ½¡£
-//Json-lib£¨ÏîÄ¿µØÖ·£ºhttp://json-lib.sourceforge.net/index.html£©¡£json-lib×î¿ªÊ¼µÄÒ²ÊÇÓ¦ÓÃ×î¹ã·ºµÄjson½âÎö¹¤¾ß£¬json-lib ²»ºÃµÄµØ·½È·ÊµÊÇÒÀÀµÓÚºÜ¶àµÚÈı·½°ü£¬°üÀ¨commons-beanutils.jar£¬commons-collections-3.2.jar£¬commons-lang-2.6.jar£¬commons-logging-1.1.1.jar£¬ezmorph-1.0.6.jar£¬¶ÔÓÚ¸´ÔÓÀàĞÍµÄ×ª»»£¬json-lib¶ÔÓÚjson×ª»»³Ébean»¹ÓĞÈ±Ïİ£¬±ÈÈçÒ»¸öÀàÀïÃæ»á³öÏÖÁíÒ»¸öÀàµÄlist»òÕßmap¼¯ºÏ£¬json-lib´Ójsonµ½beanµÄ×ª»»¾Í»á³öÏÖÎÊÌâ¡£json-libÔÚ¹¦ÄÜºÍĞÔÄÜÉÏÃæ¶¼²»ÄÜÂú×ãÏÖÔÚ»¥ÁªÍø»¯µÄĞèÇó¡£
+//Gsonï¼ˆé¡¹ç›®åœ°å€ï¼šhttps://github.com/google/gsonï¼‰ã€‚Gsonæ˜¯ç›®å‰åŠŸèƒ½æœ€å…¨çš„Jsonè§£æç¥å™¨ï¼ŒGsonå½“åˆæ˜¯ä¸ºå› åº”Googleå…¬å¸å†…éƒ¨éœ€æ±‚è€Œç”±Googleè‡ªè¡Œç ”å‘è€Œæ¥ï¼Œä½†è‡ªä»åœ¨2008å¹´äº”æœˆå…¬å¼€å‘å¸ƒç¬¬ä¸€ç‰ˆåå·²è¢«è®¸å¤šå…¬å¸æˆ–ç”¨æˆ·åº”ç”¨ã€‚Gsonçš„åº”ç”¨ä¸»è¦ä¸ºtoJsonä¸fromJsonä¸¤ä¸ªè½¬æ¢å‡½æ•°ï¼Œæ— ä¾èµ–ï¼Œä¸éœ€è¦ä¾‹å¤–é¢å¤–çš„jarï¼Œèƒ½å¤Ÿç›´æ¥è·‘åœ¨JDKä¸Šã€‚è€Œåœ¨ä½¿ç”¨è¿™ç§å¯¹è±¡è½¬æ¢ä¹‹å‰éœ€å…ˆåˆ›å»ºå¥½å¯¹è±¡çš„ç±»å‹ä»¥åŠå…¶æˆå‘˜æ‰èƒ½æˆåŠŸçš„å°†JSONå­—ç¬¦ä¸²æˆåŠŸè½¬æ¢æˆç›¸å¯¹åº”çš„å¯¹è±¡ã€‚ç±»é‡Œé¢åªè¦æœ‰getå’Œsetæ–¹æ³•ï¼ŒGsonå®Œå…¨å¯ä»¥å°†å¤æ‚ç±»å‹çš„jsonåˆ°beanæˆ–beanåˆ°jsonçš„è½¬æ¢ï¼Œæ˜¯JSONè§£æçš„ç¥å™¨ã€‚
+//FastJsonï¼ˆé¡¹ç›®åœ°å€ï¼šhttps://github.com/alibaba/fastjsonï¼‰ã€‚Fastjsonæ˜¯ä¸€ä¸ªJavaè¯­è¨€ç¼–å†™çš„é«˜æ€§èƒ½çš„JSONå¤„ç†å™¨,ç”±é˜¿é‡Œå·´å·´å…¬å¸å¼€å‘ã€‚æ— ä¾èµ–ï¼Œä¸éœ€è¦ä¾‹å¤–é¢å¤–çš„jarï¼Œèƒ½å¤Ÿç›´æ¥è·‘åœ¨JDKä¸Šã€‚FastJsonåœ¨å¤æ‚ç±»å‹çš„Beanè½¬æ¢Jsonä¸Šä¼šå‡ºç°ä¸€äº›é—®é¢˜ï¼Œå¯èƒ½ä¼šå‡ºç°å¼•ç”¨çš„ç±»å‹ï¼Œå¯¼è‡´Jsonè½¬æ¢å‡ºé”™ï¼Œéœ€è¦åˆ¶å®šå¼•ç”¨ã€‚FastJsoné‡‡ç”¨ç‹¬åˆ›çš„ç®—æ³•ï¼Œå°†parseçš„é€Ÿåº¦æå‡åˆ°æè‡´ï¼Œè¶…è¿‡æ‰€æœ‰jsonåº“ã€‚
+//Jacksonï¼ˆé¡¹ç›®åœ°å€ï¼šhttps://github.com/FasterXML/jacksonï¼‰ã€‚ç›¸æ¯”json-libæ¡†æ¶ï¼ŒJacksonæ‰€ä¾èµ–çš„jaråŒ…è¾ƒå°‘ï¼Œç®€å•æ˜“ç”¨å¹¶ä¸”æ€§èƒ½ä¹Ÿè¦ç›¸å¯¹é«˜äº›ã€‚è€Œä¸”Jacksonç¤¾åŒºç›¸å¯¹æ¯”è¾ƒæ´»è·ƒï¼Œæ›´æ–°é€Ÿåº¦ä¹Ÿæ¯”è¾ƒå¿«ã€‚Jacksonå¯¹äºå¤æ‚ç±»å‹çš„jsonè½¬æ¢beanä¼šå‡ºç°é—®é¢˜ï¼Œä¸€äº›é›†åˆMapï¼ŒListçš„è½¬æ¢å‡ºç°é—®é¢˜ã€‚Jacksonå¯¹äºå¤æ‚ç±»å‹çš„beanè½¬æ¢Jsonï¼Œè½¬æ¢çš„jsonæ ¼å¼ä¸æ˜¯æ ‡å‡†çš„Jsonæ ¼å¼ã€‚
+//Json-libï¼ˆé¡¹ç›®åœ°å€ï¼šhttp://json-lib.sourceforge.net/index.htmlï¼‰ã€‚json-libæœ€å¼€å§‹çš„ä¹Ÿæ˜¯åº”ç”¨æœ€å¹¿æ³›çš„jsonè§£æå·¥å…·ï¼Œjson-lib ä¸å¥½çš„åœ°æ–¹ç¡®å®æ˜¯ä¾èµ–äºå¾ˆå¤šç¬¬ä¸‰æ–¹åŒ…ï¼ŒåŒ…æ‹¬commons-beanutils.jarï¼Œcommons-collections-3.2.jarï¼Œcommons-lang-2.6.jarï¼Œcommons-logging-1.1.1.jarï¼Œezmorph-1.0.6.jarï¼Œå¯¹äºå¤æ‚ç±»å‹çš„è½¬æ¢ï¼Œjson-libå¯¹äºjsonè½¬æ¢æˆbeanè¿˜æœ‰ç¼ºé™·ï¼Œæ¯”å¦‚ä¸€ä¸ªç±»é‡Œé¢ä¼šå‡ºç°å¦ä¸€ä¸ªç±»çš„listæˆ–è€…mapé›†åˆï¼Œjson-libä»jsonåˆ°beançš„è½¬æ¢å°±ä¼šå‡ºç°é—®é¢˜ã€‚json-libåœ¨åŠŸèƒ½å’Œæ€§èƒ½ä¸Šé¢éƒ½ä¸èƒ½æ»¡è¶³ç°åœ¨äº’è”ç½‘åŒ–çš„éœ€æ±‚ã€‚
 
 /**
  * FastJsonUtils <br/>
- * ÌØµã£ºËÙ¶È×î¿ì  <br/>
- * ÒÀÀµ:
+ * ç‰¹ç‚¹ï¼šé€Ÿåº¦æœ€å¿«  <br/>
+ * ä¾èµ–:
  * 	<dependency>
  *	    <groupId>com.alibaba</groupId>
  *	    <artifactId>fastjson</artifactId>
@@ -35,24 +34,24 @@ public class FastJsonUtils {
  
     static {
         config = new SerializeConfig();
-        config.put(java.util.Date.class, new JSONLibDataFormatSerializer()); // Ê¹ÓÃºÍjson-lib¼æÈİµÄÈÕÆÚÊä³ö¸ñÊ½
-        config.put(java.sql.Date.class, new JSONLibDataFormatSerializer()); // Ê¹ÓÃºÍjson-lib¼æÈİµÄÈÕÆÚÊä³ö¸ñÊ½
+        config.put(java.util.Date.class, new JSONLibDataFormatSerializer()); // ä½¿ç”¨å’Œjson-libå…¼å®¹çš„æ—¥æœŸè¾“å‡ºæ ¼å¼
+        config.put(java.sql.Date.class, new JSONLibDataFormatSerializer()); // ä½¿ç”¨å’Œjson-libå…¼å®¹çš„æ—¥æœŸè¾“å‡ºæ ¼å¼
     }
  
-    private static final SerializerFeature[] features = {SerializerFeature.WriteMapNullValue, // Êä³ö¿ÕÖÃ×Ö¶Î
-            SerializerFeature.WriteNullListAsEmpty, // list×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª[]£¬¶ø²»ÊÇnull
-            SerializerFeature.WriteNullNumberAsZero, // ÊıÖµ×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª0£¬¶ø²»ÊÇnull
-            SerializerFeature.WriteNullBooleanAsFalse, // Boolean×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎªfalse£¬¶ø²»ÊÇnull
-            SerializerFeature.WriteNullStringAsEmpty // ×Ö·ûÀàĞÍ×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª""£¬¶ø²»ÊÇnull
+    private static final SerializerFeature[] features = {SerializerFeature.WriteMapNullValue, // è¾“å‡ºç©ºç½®å­—æ®µ
+            SerializerFeature.WriteNullListAsEmpty, // listå­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º[]ï¼Œè€Œä¸æ˜¯null
+            SerializerFeature.WriteNullNumberAsZero, // æ•°å€¼å­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º0ï¼Œè€Œä¸æ˜¯null
+            SerializerFeature.WriteNullBooleanAsFalse, // Booleanå­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸ºfalseï¼Œè€Œä¸æ˜¯null
+            SerializerFeature.WriteNullStringAsEmpty // å­—ç¬¦ç±»å‹å­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º""ï¼Œè€Œä¸æ˜¯null
     };
       
     /**
-     * ¶ÔÏó  to json×Ö·û´® <br/>
-     * ×ª»»¹æÔò:
-     * 		1¡¢list×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª[]£¬¶ø²»ÊÇnull
-     * 		2¡¢ÊıÖµ×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª0£¬¶ø²»ÊÇnull
-     * 		3¡¢Boolean×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎªfalse£¬¶ø²»ÊÇnull
-     * 		4¡¢×Ö·ûÀàĞÍ×Ö¶ÎÈç¹ûÎªnull£¬Êä³öÎª""£¬¶ø²»ÊÇnull
+     * å¯¹è±¡  to jsonå­—ç¬¦ä¸² <br/>
+     * è½¬æ¢è§„åˆ™:
+     * 		1ã€listå­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º[]ï¼Œè€Œä¸æ˜¯null
+     * 		2ã€æ•°å€¼å­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º0ï¼Œè€Œä¸æ˜¯null
+     * 		3ã€Booleanå­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸ºfalseï¼Œè€Œä¸æ˜¯null
+     * 		4ã€å­—ç¬¦ç±»å‹å­—æ®µå¦‚æœä¸ºnullï¼Œè¾“å‡ºä¸º""ï¼Œè€Œä¸æ˜¯null
      * @param object
      * @return
      */
@@ -61,7 +60,7 @@ public class FastJsonUtils {
     }
 
     /**
-     * ¶ÔÏó to json×Ö·û´®
+     * å¯¹è±¡ to jsonå­—ç¬¦ä¸²
      * list | map | array
      * @param object
      * @return
@@ -71,7 +70,7 @@ public class FastJsonUtils {
     }
  
     /**
-     * JSON×Ö·û´® to ¶ÔÏó
+     * JSONå­—ç¬¦ä¸² to å¯¹è±¡
      * @param json
      * @param clazz
      * @return
@@ -81,7 +80,7 @@ public class FastJsonUtils {
     }
     
     /**
-     * JSON×Ö·û´® to JSONObject
+     * JSONå­—ç¬¦ä¸² to JSONObject
      * @param json
      * @return
      */
@@ -90,7 +89,7 @@ public class FastJsonUtils {
     }
  
     /**
-     * JSON×Ö·û´® to java Bean
+     * JSONå­—ç¬¦ä¸² to java Bean
      * @param text
      * @param clazz
      * @return
@@ -100,10 +99,10 @@ public class FastJsonUtils {
     }
     
     /**
-     * json×Ö·û´® to ¶ÔÏóÊı×é
+     * jsonå­—ç¬¦ä¸² to å¯¹è±¡æ•°ç»„
      * @param json
      * @param clazz
-     * @param ts  arrayÈİÆ÷
+     * @param ts  arrayå®¹å™¨
      * @return
      */
     public static <T> T[] json2array(String json, Class<T> clazz, T[] ts) {
@@ -111,8 +110,8 @@ public class FastJsonUtils {
     }
 
     /**
-     * json×Ö·û´®  to ¶ÔÏóÊı×é<br/>
-     * ¸ÃÊı×é²»¿ÉÀ©Õ¹£¬ÒòÎªÓÉlist.array()×ª»»¶øÀ´
+     * jsonå­—ç¬¦ä¸²  to å¯¹è±¡æ•°ç»„<br/>
+     * è¯¥æ•°ç»„ä¸å¯æ‰©å±•ï¼Œå› ä¸ºç”±list.array()è½¬æ¢è€Œæ¥
      * @param text
      * @param clazz
      * @return
@@ -122,7 +121,7 @@ public class FastJsonUtils {
     }
  
     /**
-     * json×Ö·û´® to List
+     * jsonå­—ç¬¦ä¸² to List
      * @param json
      * @param clazz
      * @param <T>
@@ -133,7 +132,7 @@ public class FastJsonUtils {
     }
 
     /**
-     * json×Ö·û´® to Map
+     * jsonå­—ç¬¦ä¸² to Map
      * @param <K>
      * @param <V>
      * @param json
