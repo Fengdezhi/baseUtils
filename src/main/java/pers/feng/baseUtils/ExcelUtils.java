@@ -699,7 +699,7 @@ public class ExcelUtils {
               cell.setCellValue(getCellValue(row.getCell(i)));// 复制单元格的值到新的单元格  
               // cell.setCellStyle(row.getCell(i).getCellStyle());//出错  
               if (row.getCell(i) == null) continue;  
-              copyCellStyle(row.getCell(i).getCellStyle(), newstyle); // 获取原来的单元格样式  
+//              copyCellStyle(row.getCell(i).getCellStyle(), newstyle); // 获取原来的单元格样式  
               cell.setCellStyle(newstyle);// 设置样式  
               // sheet.autoSizeColumn(i);//自动跳转列宽度  
           }  
