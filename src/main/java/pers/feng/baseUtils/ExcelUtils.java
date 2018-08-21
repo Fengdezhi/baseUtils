@@ -30,7 +30,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 创建时间：2016-7-27
  * @author Jibaole
  */
-public class ExcelUtils {  
+public class ExcelUtils {
+   public final static ThreadLocal<Workbook> threadLocal = new ThreadLocal();
     
   //%%%%%%%%-------常量部分 开始----------%%%%%%%%%  
   /** 
@@ -607,7 +608,8 @@ public class ExcelUtils {
    * @param wb 
    * @return 
    */  
-  private List<Row> readExcel(Workbook wb) {  
+  private List<Row> readExcel(Workbook wb) {
+      threadLocal.set(wb);
       List<Row> rowList = new ArrayList<Row>();  
         
       int sheetCount = 1;//需要操作的sheet数量  
@@ -730,7 +732,7 @@ public class ExcelUtils {
    * @param row 
    * @return 
    */  
-  private int findInExcel(Sheet sheet, Row row) {  
+  public int findInExcel(Sheet sheet, Row row) {
       int pos = -1;  
  
       try {  
